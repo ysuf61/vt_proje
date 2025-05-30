@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CriptDash | Dashboard</title>
+
+
+  <!--kullanıcı kontrol-->
+  <script>
+    if (!localStorage.getItem('username')) {
+      window.location.href = 'login.html';
+    }
+  </script>
+  
+  <!--koyu tema?-->
+  <style>
+    body.dark-mode {
+      background-color: #1e1e2f;
+      color: #e0e0e0;
+    }
+  
+    .dark-mode .card {
+      background-color: #2c2f36;
+      color: #fff;
+    }
+  
+    .dark-mode .navbar {
+      background-color: #1f2d3d;
+    }
+  
+    .dark-mode .sidebar {
+      background-color: #1f2d3d;
+    }
+  
+    .dark-mode .table {
+      background-color: #1e1e2f;
+      color: #e0e0e0;
+    }
+  
+    .dark-mode .modal-content {
+      background-color: #2c2f36;
+      color: #fff;
+    }
+  
+    .dark-mode .btn-info {
+      background-color: #00e676;
+      border-color: #00e676;
+    }
+  
+    .dark-mode .bg-warning {
+      background-color: #f7931a !important;
+    }
+  </style>
+  
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- styles.css -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- datatable -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="dist/img/cdlogoo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+ <!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-dark bg-dark">
+  <li class="nav-item">
+  <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+</li>
+
+  <!-- Sol: Menü Butonu ve Logo -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+     <a href="#" onclick="location.href='criptdash.html'; return false;">CriptDash</a>
+
+    </li>
+  </ul>
+
+  <!-- Sağ: Tema, Kullanıcı, Ayarlar, Çıkış -->
+  <ul class="navbar-nav ml-auto">
+    <!-- Tema Geçiş -->
+    <li class="nav-item d-flex align-items-center">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="darkModeToggle">
+        <label class="custom-control-label" for="darkModeToggle" style="cursor:pointer;">🌙</label>
+      </div>
+    </li>
+
+    <!-- Kullanıcı Bilgisi -->
+    <li class="nav-item">
+      <a id="user-greeting" class="nav-link" href="login.html">Giriş Yap</a>
+    </li>
+
+    <!-- Çıkış Butonu (ilk başta gizli) -->
+    <li class="nav-item" id="logout-item" style="display: none;">
+      <a href="#" class="nav-link text-danger" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- /.navbar -->
+
+                  
+  <!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="criptdash.html" class="brand-link">
+    <img src="dist/img/cdlogoo.png" alt="CriptDash Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">CriptDash</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <li class="nav-item">
+  <a href="profil.html" class="nav-link">
+    <i class="nav-icon fas fa-user"></i>
+    <p>Profil</p>
+  </a>
+</li>
+
+    
+    <!-- Menü -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Dashboard -->
+        <li class="nav-item">
+          <a href="criptdash.html" class="nav-link active">
+            <i class="nav-icon fas fa-home"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+
+        <!-- Kripto Paralar -->
+        <li class="nav-item">
+          <a href="kriptoparalar.html" class="nav-link">
+  <i class="nav-icon fas fa-coins"></i>
+  <p>Kar Zarar</p>
+</a>
+
+        </li>
+
+        <!-- Risk Analizi -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="$('#riskModal').modal('show')">
+            <i class="nav-icon fas fa-exclamation-triangle"></i>
+            <p>Risk Analizi</p>
+          </a>
+        </li>
+
+        <!-- Fiyat Alarmı -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="$('#alarmModal').modal('show')">
+            <i class="nav-icon fas fa-bell"></i>
+            <p>Fiyat Alarmı</p>
+          </a>
+        </li>
+        
+
+
+        <!-- Ayarlar -->
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="$('#settingsModal').modal('show')">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>Ayarlar</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+
+<!-- Ayarlar Modalı -->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="settingsModalLabel">Ayarlar</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Kapat">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>Tema Ayarı</h6>
+        <div class="custom-control custom-switch mb-3">
+          <input type="checkbox" class="custom-control-input" id="darkModeToggleModal">
+          <label class="custom-control-label" for="darkModeToggleModal">Karanlık Mod</label>
+        </div>
+
+
+        <div class="form-group">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="soundToggle">
+            <label class="custom-control-label" for="soundToggle">Bildirim Sesi</label>
+          </div>
+        </div>
+      </div>
+<div class="form-check mt-3">
+  <input class="form-check-input" type="checkbox" id="filterFavorites">
+  <label class="form-check-label" for="filterFavorites">
+    Sadece favori coinleri göster
+  </label>
+</div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  
+
+  <!-- Content Header (Page header) -->
+ <!-- Kripto Tablosu Başlangıç -->
+<div class="container-fluid mt-5">
+  <h4 class="mb-4">Kripto Para Listesi</h4>
+
+  <!-- responsive tablo -->
+  <div class="table-responsive">
+    <table id="cryptoTable" class="display table table-striped table-bordered" style="width:100%">
+      <thead>
+        <tr>
+          <th>⭐</th>
+          <th>Ad</th>
+          <th>Sembol</th>
+          <th>Fiyat</th>
+          <th>%24h</th>
+          <th>Hacim</th>
+          <th>Detay</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Piyasa bilgileri-->
+  <div class="row mt-4 text-center">
+    <div class="col-md-4">
+      <h5>Toplam Piyasa Değeri</h5>
+      <p id="totalMarketCap">$-</p>
+    </div>
+    <div class="col-md-4">
+      <h5>24 Saatlik Hacim</h5>
+      <p id="totalVolume">$-</p>
+    </div>
+    <div class="col-md-4">
+      <h5>Toplam Coin</h5>
+      <p id="totalCoins">-</p>
+    </div>
+  </div>
+</div>
+<!-- Kripto Tablosu Bitiş -->
+
+
+
+       <!-- Grafik 1 ve 2: BTC ve ETH (Üst Sıra) -->
+<div class="row">
+  <!-- BTC -->
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-header">
+        <h3 class="card-title">Bitcoin Fiyat Grafiği</h3>
+      </div>
+      <div class="card-body p-0">
+        <div style="position: relative; width: 100%; height: 280px;">
+          <canvas id="btcChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETH -->
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-header">
+        <h3 class="card-title">Ethereum Fiyat Grafiği</h3>
+      </div>
+      <div class="card-body" style="height: 300px;">
+        <div id="ethChart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Grafik 3 ve 4: Hacim ve Risk (Alt Sıra) -->
+<div class="row mt-4">
+  <!-- Hacim -->
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-header border-0">
+        <h3 class="card-title">Hacim Dağılımı</h3>
+      </div>
+      <div class="card-body" style="height: 300px;">
+        <div id="volumeChart" style="width:100%; height:100%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Risk -->
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-header border-0">
+        <h3 class="card-title">Risk Analizi</h3>
+      </div>
+      <div class="card-body" style="height: 300px;">
+        <canvas id="dashboardRiskChart" class="w-100 h-100"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <div class="modal fade" id="alarmModal" tabindex="-1" role="dialog" aria-labelledby="alarmModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="alarmModalLabel">Fiyat Alarmı</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Kapat">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Şu an zaten sayfada var olan alarm formunu buraya taşıyabilirsin -->
+        <div class="form-group">
+          <label for="alarmCoinSelect">Coin Seç:</label>
+          <select id="alarmCoinSelect" class="form-control"></select>
+        </div>
+        <div class="form-group">
+          <label for="targetPrice">Hedef Fiyat (USD):</label>
+          <input type="number" id="targetPrice" class="form-control" placeholder="Örn: 45000">
+        </div>
+        <button class="btn btn-success" onclick="setPriceAlert()">Alarmı Kur</button>
+        <div id="alarmStatus" class="mt-3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </section>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+<!--assets dosyası-->
+<script src="assets/app.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+
+<!-- Kripto Tablosu Bitiş -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  // Sayfa yüklendiğinde kullanıcı bilgisini kontrol et
+  document.addEventListener('DOMContentLoaded', function () {
+    const user = localStorage.getItem('username');
+    const greetingEl = document.getElementById('user-greeting');
+    const logoutEl = document.getElementById('logout-item');
+
+    if (user) {
+      greetingEl.innerText = `Hoş geldin, ${user}`;
+      greetingEl.removeAttribute('href');
+      greetingEl.style.cursor = 'default';
+      greetingEl.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+      logoutEl.style.display = 'block';
+    } else {
+      greetingEl.innerText = 'Giriş Yap';
+      greetingEl.setAttribute('href', 'login.html');
+      logoutEl.style.display = 'none';
+    }
+  });
+
+  // Çıkış fonksiyonu (login.html'e yönlendirerek)
+  function logout() {
+    localStorage.removeItem('username');
+
+    const greetingEl = document.getElementById('user-greeting');
+    const logoutEl = document.getElementById('logout-item');
+
+    greetingEl.innerText = 'Giriş Yap';
+    greetingEl.setAttribute('href', 'login.html');
+    logoutEl.style.display = 'none';
+
+    // Yönlendirme
+    window.location.href = 'login.html';
+  }
+</script>
+<!--hosgeldin ekranı-->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const user = localStorage.getItem('username');
+    const greeted = sessionStorage.getItem('greeted');
+    
+    if (user && !greeted) {
+      Swal.fire({
+        title: `Hoş geldin, ${user}!`,
+        text: "Dashboard'a hoş geldiniz.",
+        icon: 'info',
+        confirmButtonText: 'Devam'
+      });
+      sessionStorage.setItem('greeted', 'true'); // Tek seferlik göster
+    }
+  });
+</script>
+
+<!-- Coin Detay Modal -->
+<div class="modal fade" id="coinModal" tabindex="-1" role="dialog" aria-labelledby="coinModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="coinModalLabel">Coin Detayı</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="coinModalBody">
+        <!-- Coin detayları buraya dinamik olarak gelir -->
+      </div>
+    </div>
+  </div>
+</div>
+<!--modal-->
+
+<!--koyu tema?-->
+<script>
+  const toggle = document.getElementById('darkModeToggle');
+
+  // Sayfa yüklendiğinde kontrol et
+  document.addEventListener('DOMContentLoaded', function () {
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      toggle.checked = true;
+    }
+  });
+
+  // Değişiklik olduğunda kaydet ve uygula
+  toggle.addEventListener('change', function () {
+    if (this.checked) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('darkMode', 'true');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('darkMode', 'false');
+    }
+  });
+</script>
+
+<!--risk analizi modal'ı-->
+
+<!-- RISK ANALYSIS MODAL -->
+<div class="modal fade" id="riskModal" tabindex="-1" role="dialog" aria-labelledby="riskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="riskModalLabel">Risk Analizi</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Kapat">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="height: 200px;">
+          <canvas id="riskChart" class="w-100 h-100"></canvas>
+        </div>
+
+        <hr>
+        <p id="btc-risk-text"><strong>Bitcoin:</strong> yükleniyor...</p>
+<p id="eth-risk-text"><strong>Ethereum:</strong> yükleniyor...</p>
+<p id="doge-risk-text"><strong>Dogecoin:</strong> yükleniyor...</p>
+<p id="ada-risk-text"><strong>Cardano:</strong> yükleniyor...</p>
+<p id="sol-risk-text"><strong>Solana:</strong> yükleniyor...</p>
+<p><strong>Genel Risk Puanı:</strong> <span id="genel-risk">yükleniyor...</span></p>
+
+        <hr>
+        <small>Risk analizleri tahmini verilerdir. Gerçek yatırım kararı için profesyonel danışmanlık alınız.</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--dinamik kullanıcı adı sidebar'da-->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const user = localStorage.getItem('username');
+  const sidebarName = document.getElementById('sidebar-username');
+  if (user && sidebarName) {
+    sidebarName.innerText = user;
+  }
+});
+</script>
+
+
+
+
+<!--fiyat alarmı tetikletici-->
+
+
+<script>
+  
+  // Her 30 saniyede bir kontrol et
+  setInterval(checkPriceAlarms, 30000);
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const canvas = document.getElementById("btcChart");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  // Eğer varsa eski grafik silinsin
+  if (window.btcChartInstance) {
+    window.btcChartInstance.destroy();
+  }
+
+  fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30")
+    .then(response => response.json())
+    .then(data => {
+      const prices = data.prices;
+      const labels = prices.map(entry => {
+        const date = new Date(entry[0]);
+        return `${date.getDate()}/${date.getMonth() + 1}`;
+      });
+      const priceData = prices.map(entry => entry[1]);
+
+      window.btcChartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "BTC Fiyatı (USD)",
+            data: priceData,
+            borderColor: "rgba(255, 206, 86, 1)",
+            backgroundColor: "rgba(255, 206, 86, 0.2)",
+            fill: true,
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: {
+            padding: 10
+          },
+          scales: {
+            y: {
+              beginAtZero: false
+            }
+          }
+        }
+      });
+    });
+});
+
+
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Tema toggle (modal içi)
+  const modalToggle = document.getElementById('darkModeToggleModal');
+  if (modalToggle) {
+    modalToggle.checked = document.body.classList.contains('dark-mode');
+    modalToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    });
+  }
+
+  // Coin sayısı
+  const savedCount = localStorage.getItem('coinCount');
+  if (savedCount && document.getElementById('coinCount')) {
+    document.getElementById('coinCount').value = savedCount;
+  }
+
+  const coinSelect = document.getElementById('coinCount');
+  if (coinSelect) {
+    coinSelect.addEventListener('change', (e) => {
+      localStorage.setItem('coinCount', e.target.value);
+    });
+  }
+
+  // Ses
+  const soundSetting = localStorage.getItem('soundEnabled') === 'true';
+  if (document.getElementById('soundToggle')) {
+    document.getElementById('soundToggle').checked = soundSetting;
+    document.getElementById('soundToggle').addEventListener('change', (e) => {
+      localStorage.setItem('soundEnabled', e.target.checked);
+    });
+  }
+});
+</script>
+
+
+<script>
+$(document).ready(function () {
+  let riskChart = null;
+
+  $('#riskModal').on('shown.bs.modal', function () {
+    if (riskChart) return;
+
+    const ctx = document.getElementById('riskChart')?.getContext('2d');
+    if (!ctx) return;
+
+    fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,dogecoin,cardano,solana&price_change_percentage=24h')
+      .then(res => res.json())
+      .then(data => {
+        const labels = [];
+        const riskScores = [];
+        const barColors = [];
+        let totalScore = 0;
+
+        data.forEach(coin => {
+          const sym = coin.symbol.toLowerCase();
+          const change = Math.abs(coin.price_change_percentage_24h ?? 0);
+          let risk = 0;
+          let yorum = '';
+
+          if (change < 2) {
+            risk = 3;
+            yorum = `<span class="text-success">Düşük risk</span>. Son 24 saatte düşük volatilite (%${change.toFixed(2)}).`;
+            barColors.push('rgba(40, 167, 69, 0.7)');
+          } else if (change < 5) {
+            risk = 6;
+            yorum = `<span class="text-warning">Orta risk</span>. 24 saatte %${change.toFixed(2)} değişim.`;
+            barColors.push('rgba(255, 193, 7, 0.7)');
+          } else {
+            risk = 9;
+            yorum = `<span class="text-danger">Yüksek risk</span>! 24 saatte %${change.toFixed(2)} oynama.`;
+            barColors.push('rgba(220, 53, 69, 0.7)');
+          }
+
+          const textEl = document.getElementById(`${sym}-risk-text`);
+          if (textEl) {
+            textEl.innerHTML = `<strong>${coin.name}:</strong> ${yorum}`;
+          }
+
+          labels.push(coin.symbol.toUpperCase());
+          riskScores.push(risk);
+          totalScore += risk;
+        });
+
+        const genelRisk = (totalScore / data.length).toFixed(1);
+        const genelRiskEl = document.getElementById('genel-risk');
+        genelRiskEl.innerText = `${genelRisk} / 10`;
+
+        if (genelRisk > 6) {
+          genelRiskEl.innerHTML += ` <span class="text-danger">(Yüksek genel risk!)</span>`;
+        } else if (genelRisk > 4) {
+          genelRiskEl.innerHTML += ` <span class="text-warning">(Orta düzeyde risk)</span>`;
+        } else {
+          genelRiskEl.innerHTML += ` <span class="text-success">(Düşük genel risk)</span>`;
+        }
+
+        riskChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Risk Skoru (1-10)',
+              data: riskScores,
+              backgroundColor: barColors
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 10
+              }
+            }
+          }
+        });
+      })
+      .catch(err => console.error('Risk verisi alınamadı:', err));
+  });
+});
+</script>
+<script>
+$(document).ready(function () {
+  fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1")
+    .then(res => res.json())
+    .then(data => {
+      const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+      const showOnlyFavorites = localStorage.getItem('filterFavorites') === 'true';
+
+      const filteredData = showOnlyFavorites
+        ? data.filter(coin => favorites.includes(coin.id))
+        : data;
+
+      $('#cryptoTable').DataTable({
+        pageLength: 5,
+        lengthMenu: [5, 10, 25, 50],
+        data: filteredData, // 🔄 önemli satır: filtreli veri buraya geldi
+        columns: [
+          {
+            data: 'id',
+            orderable: false,
+            render: function (data, type, row) {
+              const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+              const isFavorite = favorites.includes(data);
+              const star = isFavorite ? '★' : '☆';
+              return `<span class="favorite-star" data-id="${data}" style="cursor:pointer; font-size:18px;">${star}</span>`;
+            }
+          },
+          {
+            data: 'name',
+            render: function (data, type, row) {
+              return `<img src="${row.image}" width="20" style="margin-right:6px;"> ${data}`;
+            }
+          },
+          {
+            data: 'symbol',
+            render: data => data.toUpperCase()
+          },
+          {
+            data: 'current_price',
+            type: 'num',
+            render: function (data, type) {
+              return type === 'display' ? `$${data.toLocaleString()}` : data;
+            }
+          },
+          {
+            data: 'price_change_percentage_24h',
+            type: 'num',
+            render: function (data, type) {
+              return type === 'display' ? `${data.toFixed(2)}%` : data;
+            }
+          },
+          {
+            data: 'total_volume',
+            type: 'num',
+            render: function (data, type) {
+              return type === 'display' ? `$${data.toLocaleString()}` : data;
+            }
+          },
+          {
+            data: null,
+            orderable: false,
+            render: function (data, type, row) {
+              return `<button class="btn btn-sm btn-info" onclick='showCoinDetails(${JSON.stringify(row)})'>Detay</button>`;
+            }
+          }
+        ]
+      });
+
+      // Yıldız tıklama olayını tanımla
+      $('#cryptoTable').on('click', '.favorite-star', function () {
+        const coinId = $(this).data('id');
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+        if (favorites.includes(coinId)) {
+          favorites = favorites.filter(id => id !== coinId);
+        } else {
+          favorites.push(coinId);
+        }
+
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        $('#cryptoTable').DataTable().rows().invalidate().draw();
+      });
+    })
+    .catch(err => console.error('Veri çekilemedi:', err));
+});
+</script>
+
+<!-- Kripto Tablosu Bitiş -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const ethChartContainer = document.getElementById("ethChart");
+
+  // Önce varsa eski grafik silinsin
+  if (window.ethChart) {
+    window.ethChart.destroy();
+  }
+
+  // Yeni canvas oluştur (her seferinde sıfırdan)
+  ethChartContainer.innerHTML = "";
+  const ethCanvas = document.createElement("canvas");
+  ethCanvas.id = "ethChartCanvas";
+  ethChartContainer.appendChild(ethCanvas);
+
+  const ctx = ethCanvas.getContext("2d");
+
+  fetch("https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=30")
+    .then(response => response.json())
+    .then(data => {
+      const prices = data.prices;
+      const labels = prices.map(entry => {
+        const date = new Date(entry[0]);
+        return `${date.getDate()}/${date.getMonth() + 1}`;
+      });
+      const priceData = prices.map(entry => entry[1]);
+
+      window.ethChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "ETH Fiyatı (USD)",
+            data: priceData,
+            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            fill: true,
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: false
+            }
+          }
+        }
+      });
+    });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=volume_desc&per_page=8&page=1")
+    .then(res => res.json())
+    .then(data => {
+      const labels = data.map(coin => coin.name);
+      const volumes = data.map(coin => coin.total_volume);
+
+      const ctx = document.createElement("canvas");
+      document.getElementById("volumeChart").innerHTML = "";
+      document.getElementById("volumeChart").appendChild(ctx);
+
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Hacim (USD)',
+            data: volumes,
+            backgroundColor: [
+              '#f7931a', '#627eea', '#3c3c3d', '#00a6c4',
+              '#e84142', '#f3ba2f', '#8c8c8c', '#ff9900'
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
+    })
+    .catch(err => console.error("Hacim verisi alınamadı:", err));
+});
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const ctx = document.getElementById("dashboardRiskChart")?.getContext("2d");
+  if (!ctx) return;
+
+  fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,dogecoin,cardano,solana&price_change_percentage=24h")
+    .then(res => res.json())
+    .then(data => {
+      const labels = [];
+      const riskScores = [];
+      const colors = [];
+
+      data.forEach(coin => {
+        const change = Math.abs(coin.price_change_percentage_24h ?? 0);
+        let risk = 0;
+
+        if (change < 2) {
+          risk = 3;
+          colors.push("rgba(40, 167, 69, 0.7)");
+        } else if (change < 5) {
+          risk = 6;
+          colors.push("rgba(255, 193, 7, 0.7)");
+        } else {
+          risk = 9;
+          colors.push("rgba(220, 53, 69, 0.7)");
+        }
+
+        labels.push(coin.name);
+        riskScores.push(risk);
+      });
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Risk Skoru (1-10)',
+            data: riskScores,
+            backgroundColor: colors
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 10
+            }
+          }
+        }
+      });
+    })
+    .catch(err => console.error("Ana Sayfa Risk Verisi Alınamadı:", err));
+});
+</script>
+
+<script>
+$('#filterFavorites').on('change', function () {
+  localStorage.setItem('filterFavorites', this.checked ? 'true' : 'false');
+  location.reload(); // tabloyu filtreye göre yeniden yükle
+});
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const filterFav = localStorage.getItem('filterFavorites') === 'true';
+  const checkbox = document.getElementById('filterFavorites');
+  if (checkbox) checkbox.checked = filterFav;
+});
+
+</script>
+<script>
+let coinList = [];
+let activeAlerts = [];
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1")
+    .then(res => res.json())
+    .then(data => {
+      coinList = data;
+      const select = document.getElementById("alarmCoinSelect");
+      data.forEach(coin => {
+        const option = document.createElement("option");
+        option.value = coin.id;
+        option.textContent = `${coin.name} (${coin.symbol.toUpperCase()})`;
+        select.appendChild(option);
+      });
+    });
+
+  setInterval(checkPriceAlerts, 30000); // 30 saniyede bir kontrol et
+});
+
+function setPriceAlert() {
+  const coinId = document.getElementById("alarmCoinSelect").value;
+  const target = parseFloat(document.getElementById("targetPrice").value);
+
+  if (!coinId || isNaN(target)) {
+    document.getElementById("alarmStatus").innerHTML = "<div class='alert alert-danger'>Geçerli coin ve hedef fiyat girin.</div>";
+    return;
+  }
+
+  activeAlerts.push({ coinId, target });
+  document.getElementById("alarmStatus").innerHTML = `<div class='alert alert-info'>Alarm kuruldu: ${coinId} ≥ $${target}</div>`;
+}
+
+function checkPriceAlerts() {
+  if (activeAlerts.length === 0) return;
+
+  fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1")
+    .then(res => res.json())
+    .then(data => {
+      activeAlerts.forEach((alert, index) => {
+        const coin = data.find(c => c.id === alert.coinId);
+        if (coin && coin.current_price >= alert.target) {
+          alertUser(coin.name, coin.current_price);
+          activeAlerts.splice(index, 1); // alarmı sil
+        }
+      });
+    });
+}
+
+function alertUser(name, price) {
+  Swal.fire({
+    title: `${name} Fiyat Alarmı!`,
+    text: `Anlık fiyat: $${price.toLocaleString()}`,
+    icon: 'success',
+    confirmButtonText: 'Tamam'
+  });
+}
+</script>
+
+
+<script>
+  if ($.fn.DataTable.isDataTable('#cryptoTable')) {
+  $('#cryptoTable').DataTable().clear().destroy();
+}
+$('#cryptoTable').DataTable({ ... });
+
+</script>
+
+<script>
+function showCoinDetails(coin) {
+  const body = document.getElementById('coinModalBody');
+  if (!body) return;
+
+  body.innerHTML = `
+    <p><strong>Ad:</strong> ${coin.name}</p>
+    <p><strong>Sembol:</strong> ${coin.symbol.toUpperCase()}</p>
+    <p><strong>Fiyat:</strong> $${coin.current_price.toLocaleString()}</p>
+    <p><strong>24s Değişim:</strong> ${coin.price_change_percentage_24h.toFixed(2)}%</p>
+    <p><strong>Hacim:</strong> $${coin.total_volume.toLocaleString()}</p>
+    <img src="${coin.image}" width="50">
+  `;
+
+  $('#coinModal').modal('show');
+}
+</script>
+
+<script>
+  fetch("https://api.coingecko.com/api/v3/global")
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("totalMarketCap").textContent =
+        "$" + data.data.total_market_cap.usd.toLocaleString();
+      document.getElementById("totalVolume").textContent =
+        "$" + data.data.total_volume.usd.toLocaleString();
+      document.getElementById("totalCoins").textContent =
+        data.data.active_cryptocurrencies.toLocaleString();
+    })
+    .catch(error => {
+      console.error("Global veri alınırken hata oluştu:", error);
+    });
+</script>
+
+</body>
+
+
+</html>

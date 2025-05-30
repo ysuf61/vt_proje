@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kayıt Ol</title>
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <a href="#"><b>Cript</b>Dash</a>
+  </div>
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Yeni bir hesap oluşturun</p>
+
+      <form id="registerForm">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Ad Soyad" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-user"></span></div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="E-posta" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Şifre" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-lock"></span></div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Şifreyi Onayla" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-lock"></span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <a href="login.html">Zaten hesabınız var mı?</a>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Kayıt Ol</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<script>
+  $('#registerForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const name = $('input[placeholder="Ad Soyad"]').val();
+    const email = $('input[placeholder="E-posta"]').val();
+    const password = $('input[placeholder="Şifre"]').val();
+    const confirmPassword = $('input[placeholder="Şifreyi Onayla"]').val();
+
+    // Şifre eşleşme kontrolü
+    if (password !== confirmPassword) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Şifreler Uyuşmuyor',
+        text: 'Lütfen şifrenizi doğru onayladığınızdan emin olun.',
+        confirmButtonText: 'Tamam'
+      });
+      return;
+    }
+
+    // Kayıtlı kullanıcı bilgisi
+    const user = {
+      name: name,
+      email: email,
+      password: password
+    };
+
+    // localStorage'a kaydet
+    localStorage.setItem('registeredUser', JSON.stringify(user));
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Kayıt Başarılı',
+      text: 'Şimdi giriş yapabilirsiniz.',
+      confirmButtonText: 'Giriş Yap'
+    }).then(() => {
+      window.location.href = 'login.html';
+    });
+  });
+</script>
+</body>
+</html>
+

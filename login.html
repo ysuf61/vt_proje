@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giriş Yap</title>
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>Cript</b>Dash</a>
+  </div>
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Giriş yapmak için bilgilerinizi girin</p>
+
+      <form id="loginForm">
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="E-posta" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Şifre" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-lock"></span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <a href="register.html">Hesabınız yok mu?</a>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Giriş</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#loginForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const email = $('input[type=email]').val();
+    const password = $('input[type=password]').val();
+
+    const storedUser = JSON.parse(localStorage.getItem('registeredUser'));
+
+    // Kayıtlı kullanıcı kontrolü
+    if (storedUser && storedUser.email === email && storedUser.password === password) {
+      // Giriş başarılı
+      Swal.fire({
+        icon: 'success',
+        title: 'Giriş Başarılı',
+        text: 'Dashboard\'a yönlendiriliyorsunuz...',
+        confirmButtonText: 'Tamam'
+      }).then(() => {
+        localStorage.setItem('username', storedUser.name);
+        window.location.href = 'criptdash.html';
+      });
+    } else {
+      // Giriş başarısız
+      Swal.fire({
+        icon: 'error',
+        title: 'Hatalı Giriş',
+        text: 'E-posta veya şifre yanlış ya da kayıtlı değil.',
+        confirmButtonText: 'Tamam'
+      });
+    }
+  });
+</script>
+</body>
+</html>
+
